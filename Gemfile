@@ -3,6 +3,16 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.7.2'
 
+# Bulma CSS framework
+gem 'bulma-rails', '~> 0.9.1'
+# Devise
+gem 'devise', '~> 4.8'
+# Simple Form
+gem 'simple_form', '~> 5.1'
+# Guard
+gem 'guard', '~> 2.17'
+# Guard-livereload
+gem 'guard-livereload', '~> 2.5', '>= 2.5.2'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
 gem 'rails', '~> 6.1.3', '>= 6.1.3.2'
 # Use sqlite3 as the database for Active Record
