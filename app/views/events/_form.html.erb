@@ -1,0 +1,17 @@
+<%= simple_form_for @event do |e| %>
+<%= e.error_notification %>
+  <div class="field">
+    <div class="control">
+      <%= e.input :title, input_html: { class: "input" }, wrapper: false, autofocus: true, placeholder: "Your event's title" %>
+      <%= e.input :date, input_html: { class: "input" }, wrapper: false %> 
+    </div>
+  </div>
+  <div class="field is-grouped">
+  <p class="control">
+    <%= e.button :submit, class: "button is-success" %>
+  </p>
+  <p class="control">
+    <%= link_to "Cancel", root_path, class: "button is-danger" %>
+  </p>
+  </div>
+<% end %>
