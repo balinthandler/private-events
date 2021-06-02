@@ -3,15 +3,17 @@
     <div class="columns is-centered">
       <div class="column is-half">
       <div class="block">
-        <%= link_to "New Event", new_event_path, class: "button is-success" %><br />
+        <% if user_signed_in? %>
+          <%= link_to "New Event", new_event_path, class: "button is-success" %><br />
+        <% end %>
       </div>
         <div class="title">Upcoming Events</div>
-        <% @events.each do |e| %>
+        <% @events.order(:date).each do |e| %>
           <div class="box">
             <div class="level">
               <div class="level-left">
                 <div class="level-item">
-                  <strong class="title is-5"><%= e.title %></strong>
+                  <strong class="title is-4"><%= e.title %></strong>
                 </div>
               </div>
               <div class="level-right">
@@ -19,7 +21,25 @@
                   <span class="icon"><i class="fas fa-calendar-alt"></i></span>
                   <%= e.date %>
                 </div>
+                <div class="level-item">
+                  <%= link_to e, method: :delete, data: { confirm: "Are you sure?" } do %>
+                    <span class="icon"><i class="fas fa-trash-alt is-danger"></i></span>
+                  <% end %>
+                </div>
               </div>
+            </div>
+            <div class="block">
+              <p>
+                By <%= e.user.name %>
+              </p>
+            </div>
+            <div class="control">
+              <%= link_to e do %>
+                  <p>
+                  <span class="icon"><i class="fas fa-info-circle"></i></span>
+                  Show Details
+                  </p>
+              <% end %>
             </div>
           </div>
         <% end %>

@@ -1,0 +1,20 @@
+<div class="section">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-half">
+        <div class="box">
+          <h1 class="title is-4">
+            Events created by <%= @user.name %>
+          </h1>
+          <% @user.events.order(:date).each do |event| %>
+            <div class="block">
+              <span class="icon"><i class="fas fa-calendar-alt"></i></span>
+              <%= event.date %> - <%= link_to event.title, event %>
+            </div>
+          <% end %>
+          <%= link_to 'Back to Events', root_path, class: "button is-primary" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

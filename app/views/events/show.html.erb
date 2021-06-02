@@ -1,4 +1,35 @@
-<p id="notice"><%= notice %></p>
-
-<%= link_to 'Edit', edit_event_path(@event) %> |
-<%= link_to 'Back', events_path %>
+<div class="section">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-half">
+        <div class="box">
+          <div class="level">
+            <div class="level-left">
+              <div class="level-item">
+                <h1 class="title is-3"><%= @event.title %></h1>
+              </div>
+            </div>
+            <div class="level-right">
+              <div class="level-item">
+                <%= link_to 'Edit Event', edit_event_path, class: "button is-info" %>
+              </div>
+              <div class="level-item">
+                <%= link_to 'Delete Event', event_path, method: :delete, class: "button is-danger" %>
+              </div>
+            </div>
+          </div>
+          <div class="block">
+            <i class="fas fa-calendar-alt"></i>
+            <%= @event.date %>
+            <p>Organized by<br />
+            <strong><%= link_to @event.user.name, @event.user %></strong></p>
+          </div>
+          <div class="block">
+            <h2 class="title is-5">
+              Attendees:
+            </h2>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
