@@ -9,7 +9,7 @@ class EventsController < ApplicationController
 
   # GET /events/1 or /events/1.json
   def show
-    
+
   end
 
   # GET /events/new
@@ -56,6 +56,20 @@ class EventsController < ApplicationController
       format.html { redirect_to root_path, notice: "Event was successfully destroyed." }
       format.json { head :no_content }
     end
+  end
+
+  def enroll  
+    @event = Event.find(params[:id])
+    if !@event.attendees.include?(current_user)
+      @event.attendees << current_user
+    end
+    redirect_to @event
+  end
+
+  def cancel  
+    @event = Event.find(params[:id])
+    @event.attendees.delete(current_user)
+    redirect_to @event
   end
 
   private

@@ -9,6 +9,7 @@
                 <h1 class="title is-3"><%= @event.title %></h1>
               </div>
             </div>
+            <% if @event.creator == current_user %>
             <div class="level-right">
               <div class="level-item">
                 <%= link_to 'Edit Event', edit_event_path, class: "button is-info" %>
@@ -17,17 +18,37 @@
                 <%= link_to 'Delete Event', event_path, method: :delete, class: "button is-danger" %>
               </div>
             </div>
+            <% else %>
+            <div class="level-right">
+              <div class="level-item">
+                <% if current_user != @event.creator %>
+                  <% if @event.attendees.include?(current_user) %>
+                    <%= link_to 'I\'m not going', cancel_event_path, class: "button is-info" %>
+                  <% else %>
+                    <%= link_to 'Enroll', enroll_event_path, class: "button is-info" %>
+                  <% end %> 
+                <% end %>
+              </div>
+            </div>
+            <% end %>
           </div>
           <div class="block">
             <i class="fas fa-calendar-alt"></i>
             <%= @event.date %>
-            <p>Organized by<br />
-            <strong><%= link_to @event.user.name, @event.user %></strong></p>
+            <p>Hosted by<br />
+            <strong><%= link_to @event.creator.name, @event.creator %></strong></p>
           </div>
           <div class="block">
-            <h2 class="title is-5">
-              Attendees:
-            </h2>
+            <p>
+              <p>Attendees:</p>
+              <% @event.attendees.each_with_index do |attendee, index| %>
+                <%= link_to attendee.name, attendee %>
+                <% if index == @event.attendees.length - 1 %>
+                  .
+                <% else %>
+                  ,
+                  <% end %>
+              <% end %>
           </div>
       </div>
     </div>

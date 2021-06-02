@@ -2,12 +2,20 @@
   <div class="container">
     <div class="columns is-centered">
       <div class="column is-half">
-      <div class="block">
-        <% if user_signed_in? %>
-          <%= link_to "New Event", new_event_path, class: "button is-success" %><br />
-        <% end %>
+      <div class="level">
+        <div class="level-left">
+          <div class="level-item">
+            <div class="title is-3">Upcoming Events</div>
+          </div>
+        </div>
+        <div class="level-right">
+          <div class="level-item">
+            <% if user_signed_in? %>
+              <%= link_to "New Event", new_event_path, class: "button is-success" %><br />
+            <% end %>
+          </div>
+        </div>
       </div>
-        <div class="title">Upcoming Events</div>
         <% @events.order(:date).each do |e| %>
           <div class="box">
             <div class="level">
@@ -21,16 +29,25 @@
                   <span class="icon"><i class="fas fa-calendar-alt"></i></span>
                   <%= e.date %>
                 </div>
+                <% if current_user == e.creator %>
                 <div class="level-item">
                   <%= link_to e, method: :delete, data: { confirm: "Are you sure?" } do %>
                     <span class="icon"><i class="fas fa-trash-alt is-danger"></i></span>
                   <% end %>
                 </div>
+                <% end %>
               </div>
             </div>
             <div class="block">
               <p>
-                By <%= e.user.name %>
+                Hosted by <%= e.creator.name %>
+              </p>
+              <p>
+                <% if e.attendees.count > 1%>
+                  <%= e.attendees.count %> people are going
+                <% else %>
+                  <%= e.attendees.count %> people is going
+                <% end %>
               </p>
             </div>
             <div class="control">
