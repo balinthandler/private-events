@@ -9,7 +9,15 @@
           <div class="title is-5">
             Hosted events:
           </div>
-          <% @user.events.order(:date).each do |event| %>
+          <% current_user.events.past.order(:date).each do |event| %>
+            <div class="block">
+              <s>
+                <span class="icon"><i class="fas fa-calendar-alt"></i></span>
+                <%= event.date %> - <%= link_to event.title, event %>
+              </s>
+            </div>
+          <% end %>
+          <% @user.events.upcoming.order(:date).each do |event| %>
             <div class="block">
               <span class="icon"><i class="fas fa-calendar-alt"></i></span>
               <%= event.date %> - <%= link_to event.title, event %>
@@ -18,7 +26,17 @@
           <div class="title is-5">
             Attended events:
           </div>
-          <% Event.all.order(:date).each do |event|%>
+          <% Event.all.past.order(:date).each do |event|%>
+            <% if event.attendees.include?(@user) %>
+              <div class="block">
+                <s>
+                  <span class="icon"><i class="fas fa-calendar-alt"></i></span>
+                  <%= event.date %> - <%= link_to event.title, event %>
+                </s>
+            </div>
+            <% end %>
+          <% end %>
+          <% Event.all.upcoming.order(:date).each do |event|%>
             <% if event.attendees.include?(@user) %>
               <div class="block">
                 <span class="icon"><i class="fas fa-calendar-alt"></i></span>
@@ -26,7 +44,7 @@
             </div>
             <% end %>
           <% end %>
-          <%= link_to 'Back to Events', root_path, class: "button is-primary" %>
+          <%= link_to 'Back to Feed', root_path, class: "button is-primary" %>
         </div>
       </div>
     </div>
