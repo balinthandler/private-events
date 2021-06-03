@@ -1,0 +1,23 @@
+<h1 class="title is-3">
+  <%= link_to current_user.name, current_user %>
+</h1>
+<div class="title is-5">
+  Hosted events:
+</div>
+<% current_user.events.order(:date).each do |event| %>
+  <div class="block">
+    <span class="icon"><i class="fas fa-calendar-alt"></i></span>
+    <%= event.date %> - <%= link_to event.title, event %>
+  </div>
+<% end %>
+<div class="title is-5">
+  Attended events:
+</div>
+<% Event.all.order(:date).each do |event|%>
+  <% if event.attendees.include?(current_user) %>
+    <div class="block">
+      <span class="icon"><i class="fas fa-calendar-alt"></i></span>
+      <%= event.date %> - <%= link_to event.title, event %>
+  </div>
+  <% end %>
+<% end %>

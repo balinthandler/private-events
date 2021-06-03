@@ -1,6 +1,11 @@
 <div class="section">
   <div class="container">
-    <div class="columns is-centered">
+    <div class="columns">
+    <div class="column is-one-quarter">
+      <div class="box">
+        <%= render 'personal_feed' %>
+      </div>
+    </div>
       <div class="column is-half">
       <div class="level">
         <div class="level-left">
@@ -40,7 +45,7 @@
             </div>
             <div class="block">
               <p>
-                Hosted by <%= e.creator.name %>
+                Hosted by <%= link_to e.creator.name, e.creator %>
               </p>
               <p>
                 <% if e.attendees.count > 1%>

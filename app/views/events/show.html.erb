@@ -23,9 +23,9 @@
               <div class="level-item">
                 <% if current_user != @event.creator %>
                   <% if @event.attendees.include?(current_user) %>
-                    <%= link_to 'I\'m not going', cancel_event_path, class: "button is-info" %>
+                    <%= link_to 'I\'m not going', cancel_event_path, class: "button is-danger" %>
                   <% else %>
-                    <%= link_to 'Enroll', enroll_event_path, class: "button is-info" %>
+                    <%= link_to 'Enroll', enroll_event_path, class: "button is-success" %>
                   <% end %> 
                 <% end %>
               </div>
@@ -50,6 +50,7 @@
                   <% end %>
               <% end %>
           </div>
+          <%= link_to 'Back to Events', root_path, class: "button is-primary" %>
       </div>
     </div>
   </div>
