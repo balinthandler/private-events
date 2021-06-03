@@ -9,7 +9,7 @@
           <div class="title is-5">
             Hosted events:
           </div>
-          <% current_user.events.past.order(:date).each do |event| %>
+          <% @user.events.past.order(:date).each do |event| %>
             <div class="block">
               <s>
                 <span class="icon"><i class="fas fa-calendar-alt"></i></span>
