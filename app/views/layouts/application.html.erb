@@ -8,12 +8,12 @@
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <%= stylesheet_link_tag 'https://jenil.github.io/bulmaswatch/flatly/bulmaswatch.min.css' %>
+
     <%= stylesheet_link_tag 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css' %>
   </head>
 
   <body>
-    <nav class="navbar is-primary">
+    <nav class="navbar">
       <div class="navbar-brand">
       <%= link_to root_path, class: "navbar-item" do %>
         <h1 class="title is-5">Private Events</h1>
@@ -25,10 +25,10 @@
           <div class="field is-grouped">
             <% if user_signed_in? %>
               <p class="control">
-                <%= link_to current_user.name, edit_user_registration_path, class: "button is-info" %>
+                <%= link_to current_user.name, edit_user_registration_path, class: "button" %>
               </p>
               <p class="control">
-                <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "button is-info" %>
+                <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "button" %>
               </p>
             <% else %>
 
