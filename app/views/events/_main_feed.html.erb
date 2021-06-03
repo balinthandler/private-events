@@ -40,18 +40,17 @@
         <p>
           <% if e.attendees.count == 0 %>
             <span class="icon"><i class="fas fa-user-alt-slash"></i></span>
-            <%= e.attendees.count %>
+            <%= e.attendees.count %> participant
           <% elsif e.attendees.count == 1 %>
             <span class="icon"><i class="fas fa-user-alt"></i></span>
-            <%= e.attendees.count %>
+            <%= e.attendees.count %> participant
           <% elsif e.attendees.count == 2 %>
             <span class="icon"><i class="fas fa-user-friends"></i></span>
-            <%= e.attendees.count %>
+            <%= e.attendees.count %> participants
           <% else %>
             <span class="icon"><i class="fas fa-users"></i></span>
-            <%= e.attendees.count %>
+            <%= e.attendees.count %> participants
           <% end %>
-          participant
         </p>
       </div>
       

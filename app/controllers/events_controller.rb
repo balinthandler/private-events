@@ -5,11 +5,14 @@ class EventsController < ApplicationController
   # GET /events or /events.json
   def index
     @events = Event.all
+    if user_signed_in?
+      @invitations = Invitation.where(invitee_id: current_user.id)
+    end
   end
 
   # GET /events/1 or /events/1.json
   def show
-
+    
   end
 
   # GET /events/new
@@ -63,7 +66,15 @@ class EventsController < ApplicationController
     if !@event.attendees.include?(current_user)
       @event.attendees << current_user
     end
+    inv = Invitation.where(event_id: @event.id).and(Invitation.where(invitee_id: current_user.id)).first
+    inv.destroy
     redirect_to @event
+  end
+
+  def decline  
+    invitation = Invitation.find(params[:id])
+    invitation.destroy
+    redirect_to root_path
   end
 
   def cancel  

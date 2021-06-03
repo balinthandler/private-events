@@ -8,4 +8,5 @@ class User < ApplicationRecord
   has_many :attended_events, through: :attendances
   has_many :invitations, foreign_key: :invitee_id, dependent: :destroy
   
+  
 end
