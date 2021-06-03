@@ -17,6 +17,10 @@
 
   
   <div>
-  <%= form.submit value="Create Event", class: "button is-primary" %>
+  <% if @event.id %>
+    <%= form.submit value="Confirm Changes", class: "button is-primary" %>
+  <% else %>
+    <%= form.submit value="Create", class: "button is-primary" %>
+  <% end %>
   </div>
 <% end %>
