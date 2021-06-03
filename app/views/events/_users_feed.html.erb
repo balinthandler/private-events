@@ -1,7 +1,7 @@
 <div class="title is-3">
   Registered Users
 </div>
-<% User.all.order(created_at: :desc).each do |user| %>
+<% User.all.order(:name).each do |user| %>
   <div class="block">
     <span class="icon"><i class="fas fa-user-alt"></i></span>
     <%= link_to user.name, user %>
