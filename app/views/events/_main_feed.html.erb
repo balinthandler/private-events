@@ -15,7 +15,7 @@
       <div class="level">
         <div class="level-left">
           <div class="level-item">
-            <strong class="title is-4"><%= e.title %></strong>
+            <strong class="title is-4"><%= link_to e.title, e %></strong>
           </div>
         </div>
         <div class="level-right">
@@ -34,24 +34,27 @@
       </div>
       <div class="block">
         <p>
+        <span class="icon"><i class="fas fa-laptop-house"></i></span>
           Hosted by <%= link_to e.creator.name, e.creator %>
         </p>
         <p>
-          <% if e.attendees.count > 1%>
-            <%= e.attendees.count %> people are going
+          <% if e.attendees.count == 0 %>
+            <span class="icon"><i class="fas fa-user-alt-slash"></i></span>
+            <%= e.attendees.count %>
+          <% elsif e.attendees.count == 1 %>
+            <span class="icon"><i class="fas fa-user-alt"></i></span>
+            <%= e.attendees.count %>
+          <% elsif e.attendees.count == 2 %>
+            <span class="icon"><i class="fas fa-user-friends"></i></span>
+            <%= e.attendees.count %>
           <% else %>
-            <%= e.attendees.count %> people is going
+            <span class="icon"><i class="fas fa-users"></i></span>
+            <%= e.attendees.count %>
           <% end %>
+          participant
         </p>
       </div>
-      <div class="control">
-        <%= link_to e do %>
-            <p>
-            <span class="icon"><i class="fas fa-info-circle"></i></span>
-            Show Details
-            </p>
-        <% end %>
-      </div>
+      
     </div>
   <% end %>
 <% end %>

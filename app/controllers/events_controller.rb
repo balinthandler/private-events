@@ -72,6 +72,21 @@ class EventsController < ApplicationController
     redirect_to @event
   end
 
+  def invitation
+    @event = Event.find(params[:id])
+    @users = User.all
+  end
+
+  def invite
+    @event = Event.find(params[:event_id])
+    @user = User.find(params[:user_id])
+    invitation = Invitation.new(event_id: @event.id, invitee_id: @user.id)
+    if invitation.save
+      flash[:notice] = "Invitation sent!"
+      redirect_to invitation_event_path(@event)
+    end
+  end
+  
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_event

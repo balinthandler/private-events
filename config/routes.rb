@@ -7,6 +7,8 @@ Rails.application.routes.draw do
     member do
       get 'enroll'
       get 'cancel'
+      get 'invitation'
+      get 'invite'
     end
   end
   

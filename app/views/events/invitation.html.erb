@@ -1,0 +1,35 @@
+<div class="section">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-half">
+        <div class="box">
+
+          <div class="level">
+            <div class="level-left">
+              <div class="level-item">
+                <h1 class="title is-4"><%= @event.title %></h1>
+              </div>
+            </div>
+            <div class="level-right">
+                <div class="level-item">
+                  <%= link_to 'Back', event_path, class: "button is-info" %>
+                </div>
+            </div>
+          </div>
+          <% @users.order(:name).each do |user| %>
+            <% if @event.attendees.exclude?(user) && @event.creator != user && @event.invitees.exclude?(user)%>
+              <%= link_to invite_event_path(event_id: @event.id, user_id: user.id) do %>
+                <div class="block">
+                  <p>
+                    <span><i class="fas fa-user-plus"></i></span>
+                    <%= user.name %>
+                  </p>
+                </div>
+              <% end %>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -6,7 +6,7 @@
           <div class="level">
             <div class="level-left">
               <div class="level-item">
-                <h1 class="title is-3"><%= @event.title %></h1>
+                <h1 class="title is-4"><%= @event.title %></h1>
               </div>
             </div>
               <% if @event.date >= Date.today %>
@@ -52,7 +52,20 @@
                   <% end %>
               <% end %>
           </div>
-          <%= link_to 'Back to Feed', root_path, class: "button is-primary" %>
+          <div class="level">
+            <div class="level-left">
+            <% if current_user == @event.creator %>
+              <div class="level-item">
+                <%= link_to 'Invite People', invitation_event_path, class: "button is-primary" %>
+              </div>
+            <% end %>
+            </div>
+            <div class="level-right">
+              <div class="level-item">
+                <%= link_to 'Back to Feed', root_path, class: "button is-info" %>
+              </div>
+            </div>
+          </div>
       </div>
     </div>
   </div>
