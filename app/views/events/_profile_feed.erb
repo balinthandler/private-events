@@ -3,15 +3,15 @@
 </h1>
 <% if !@invitations.nil? %>
   <div class="title is-5">
-    <span class="icon"><i class="fas fa-user-plus"></i></span> Incoming invitations:
+    <span class="icon"><i class="fas fa-user-plus"></i></span> Incoming invitations
   </div>
   
   <% @invitations.each do |invitation| %>
-    <div class="box">
+    <div class="box invitation">
       <div class="level">
         <div class="level-left">
           <div class="level-item">
-            <p class="title is-6">
+            <p>
               <%= link_to invitation.event.title, invitation.event %>
             </p>
           </div>
@@ -19,18 +19,31 @@
         <div class="level-right">
           <div class="level-item">
             <%= link_to decline_event_path(invitation) do %>
-              <i class="fas fa-minus-circle"></i>
+              <i class="far fa-times-circle"></i>
             <% end %>
           </div>
         </div>
       </div>
-        <p>by <%= invitation.event.creator.name %> </p>
+      <p>by <%= invitation.event.creator.name %> </p>
+      <br />
+      <div class="level">
+        <div class="level-item has-centered-text">
+          <div class="field is-grouped">
+            <div class="control">
+              <%= link_to "Accept", accept_event_path(invitation.event.id), class: "button is-success" %>
+            </div>
+            <div class="control">
+              <%= link_to "Decline", decline_event_path(invitation), class: "button is-danger" %>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   <% end %>
 <% end %>
 
 <div class="title is-5">
-  <span class="icon"><i class="fas fa-house-user"></i></span> Hosted events:
+  <span class="icon"><i class="fas fa-house-user"></i></span> Hosted events
 </div>
 <% current_user.events.upcoming.order(:date).each do |event| %>
   <div class="block">
@@ -40,7 +53,7 @@
 <% end %>
 
 <div class="title is-5">
-  <span class="icon"><i class="fas fa-walking"></i></span>Attended events:
+  <span class="icon"><i class="fas fa-walking"></i></span>Events to attend
 </div>
 <% Event.all.upcoming.order(:date).each do |event|%>
   <% if event.attendees.include?(current_user) %>

@@ -71,6 +71,16 @@ class EventsController < ApplicationController
     redirect_to @event
   end
 
+  def accept  
+    @event = Event.find(params[:id])
+    if !@event.attendees.include?(current_user)
+      @event.attendees << current_user
+    end
+    inv = Invitation.where(event_id: @event.id).and(Invitation.where(invitee_id: current_user.id)).first
+    inv.destroy
+    redirect_to root_path
+  end
+
   def decline  
     invitation = Invitation.find(params[:id])
     invitation.destroy

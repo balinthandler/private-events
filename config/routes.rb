@@ -10,6 +10,7 @@ Rails.application.routes.draw do
       get 'invitation'
       get 'invite'
       get 'decline'
+      get 'accept'
     end
   end
   
