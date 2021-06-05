@@ -67,7 +67,9 @@ class EventsController < ApplicationController
       @event.attendees << current_user
     end
     inv = Invitation.where(event_id: @event.id).and(Invitation.where(invitee_id: current_user.id)).first
-    inv.destroy
+    if inv
+      inv.destroy
+    end
     redirect_to @event
   end
 
