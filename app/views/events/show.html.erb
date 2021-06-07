@@ -89,34 +89,36 @@
         <%= render 'comment_form' %>
       </div>
 
-          <% Comment.where(event_id: @event.id).order(:created_at).each do |comment| %>
-      <div class="box">
-        <div class="block">
-          <div class="level">
-            <div class="level-left">
-              <div class="level-item">
-                <span class="icon"><i class="fas fa-user-alt"></i></span> 
-                <%= link_to comment.user.name, comment.user %>
+      <% Comment.where(event_id: @event.id).order(:created_at).each do |comment| %>
+        <div class="box">
+          <div class="block">
+            <div class="level">
+              <div class="level-left">
+                <div class="level-item">
+                  <span class="icon"><i class="fas fa-user-alt"></i></span> 
+                  <%= link_to comment.user.name, comment.user %>
+                </div>
+              </div>
+              <div class="level-right">
+                <div class="level-item">
+                  <%= comment.created_at.localtime.strftime('%Y-%m-%d %H:%M:%S') %>
+                  <% if current_user == comment.user %>
+                    <%= link_to comment, method: :delete, data: { confirm: "Do you really want to delete your comment?" } do %>
+                    <span class="icon"><i class="fas fa-trash-alt is-danger"></i></span>
+                  <% end %>
+                  <% end %>
+                </div>
               </div>
             </div>
-            <div class="level-right">
-              <div class="level-item">
-                <%= comment.created_at.localtime.strftime('%Y-%m-%d %H:%M:%S') %>
-                <%= link_to comment, method: :delete, data: { confirm: "Do you really want to delete your comment?" } do %>
-                  <span class="icon"><i class="fas fa-trash-alt is-danger"></i></span>
-                <% end %>
+              <div class="title is-6">
+                
               </div>
-            </div>
+                <p>
+              <%= comment.body %>
+                </p>
           </div>
-            <div class="title is-6">
-              
-            </div>
-              <p>
-            <%= comment.body.gsub(/\n/, '<br/>') %>
-              </p>
         </div>
-      </div>
-          <% end %>
+      <% end %>
 
     </div>
   </div>
