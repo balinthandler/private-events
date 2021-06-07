@@ -40,18 +40,30 @@
             <p>Hosted by<br />
             <strong><%= link_to @event.creator.name, @event.creator %></strong></p>
           </div>
+
           <div class="block">
-            <p>
-              <p>Attendees:</p>
-              <% @event.attendees.each_with_index do |attendee, index| %>
-                <%= link_to attendee.name, attendee %>
-                <% if index == @event.attendees.length - 1 %>
-                  .
-                <% else %>
-                  ,
-                  <% end %>
-              <% end %>
+            <div class="title is-6">
+              Event's details:
+            </div>
+            <%= @event.description %>
+            
           </div>
+
+          <% if @event.attendees.presence %>
+            <div class="block">
+              <p>
+                <p>Attendees:</p>
+                <% @event.attendees.each_with_index do |attendee, index| %>
+                  <%= link_to attendee.name, attendee %>
+                  <% if index == @event.attendees.length - 1 %>
+                    .
+                  <% else %>
+                    ,
+                    <% end %>
+                <% end %>
+            </div>
+          <% end %>
+
           <div class="level">
             <div class="level-left">
             <% if current_user == @event.creator %>

@@ -8,6 +8,14 @@
   </div>
 
   <div class="block">
+    <%= form.label :description %>
+    <%= form.text_area :description, placeholder: "Details of event...", class: "textarea "%>
+    <% event.errors.full_messages_for(:description).each do |message| %>
+      <p><%= message %></p>
+    <% end %>
+  </div>
+
+  <div class="block">
   <%= form.label :date %>
   <%= form.text_field :date, type: :date, class: "input" %>
   <% event.errors.full_messages_for(:date).each do |message| %>
