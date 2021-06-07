@@ -56,7 +56,7 @@
           <% if e.comments.count == 0 %>
             <span class="icon"><i class="fas fa-comment-slash"></i></span>
             <%= e.comments.count %> comment
-          <% elsif e.attendees.count == 1 %>
+          <% elsif e.comments.count == 1 %>
             <span class="icon"><i class="fas fa-comment"></i></span>
             <%= e.comments.count %> comment
           <% else %>
