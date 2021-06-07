@@ -22,4 +22,5 @@ class Event < ApplicationRecord
   has_many :attendees, through: :attendances, dependent: :destroy
   has_many :invitations, dependent: :destroy
   has_many :invitees, through: :invitations, dependent: :destroy
+  has_many :comments, dependent: :destroy
 end

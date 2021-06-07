@@ -1,0 +1,13 @@
+<%= form_with model: @comment do |form| %>
+  <div class="block">
+    <%= form.text_area :body, placeholder: "Type your comment here...", class: "textarea", autofocus: true %>
+    <% @comment.errors.full_messages_for(:body).each do |message| %>
+      <p><%= message %></p>
+    <% end %>
+    <%= form.hidden_field :event_id, :value => params[:id] %>
+  </div>
+  
+  <div>
+    <%= form.submit value="Submit Comment", class: "button is-primary" %>
+  </div>
+<% end %>

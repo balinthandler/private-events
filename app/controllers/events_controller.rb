@@ -5,6 +5,7 @@ class EventsController < ApplicationController
   # GET /events or /events.json
   def index
     @events = Event.all
+    
     if user_signed_in?
       @invitations = Invitation.where(invitee_id: current_user.id)
     end
@@ -12,7 +13,7 @@ class EventsController < ApplicationController
 
   # GET /events/1 or /events/1.json
   def show
-    
+    @comment = Comment.new
   end
 
   # GET /events/new
