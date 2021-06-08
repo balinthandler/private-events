@@ -35,7 +35,7 @@
           <div class="field is-grouped">
             <% if user_signed_in? %>
               <p class="control">
-                <%= link_to current_user.name, edit_user_registration_path, class: "button" %>
+                <%= link_to "@" + current_user.username, edit_user_registration_path, class: "button" %>
               </p>
               <p class="control">
                 <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "button" %>

@@ -4,6 +4,6 @@
 <% User.all.order(:name).each do |user| %>
   <div class="block">
     <span class="icon"><i class="fas fa-user-alt"></i></span>
-    <%= link_to user.name, user %>
+    <%= link_to "@" + user.username, user %>
   </div>
 <% end %>

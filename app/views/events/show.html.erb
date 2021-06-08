@@ -11,26 +11,24 @@
             </div>
               <% if @event.date >= Date.today %>
                 <% if @event.creator == current_user %>
-                <div class="level-right">
-                  <div class="level-item">
-                    <%= link_to 'Edit Event', edit_event_path, class: "button is-info" %>
+                  <div class="level-right">
+                    <div class="level-item">
+                      <%= link_to 'Edit Event', edit_event_path, class: "button is-info" %>
+                    </div>
+                    <div class="level-item">
+                      <%= link_to 'Delete Event', event_path, method: :delete, class: "button is-danger" %>
+                    </div>
                   </div>
-                  <div class="level-item">
-                    <%= link_to 'Delete Event', event_path, method: :delete, class: "button is-danger" %>
-                  </div>
-                </div>
                 <% else %>
-                <div class="level-right">
-                  <div class="level-item">
-                    <% if current_user != @event.creator %>
-                      <% if @event.attendees.include?(current_user) %>
-                        <%= link_to 'I\'m not going', cancel_event_path, class: "button is-danger" %>
-                      <% else %>
-                        <%= link_to 'Enroll', enroll_event_path, class: "button is-success" %>
-                      <% end %> 
-                    <% end %>
+                  <div class="level-right">
+                    <div class="level-item">
+                      <% if current_user != @event.creator %>
+                        <% if @event.attendees.include?(current_user) %>
+                          <%= link_to 'I\'m not going', cancel_event_path, class: "button is-danger" %>
+                        <% end %> 
+                      <% end %>
+                    </div>
                   </div>
-                </div>
                 <% end %>
               <% end %>
           </div>
@@ -38,7 +36,7 @@
             <i class="fas fa-calendar-alt"></i>
             <%= @event.date %>
             <p>Hosted by<br />
-            <strong><%= link_to @event.creator.name, @event.creator %></strong></p>
+            <strong><%= link_to "@" + @event.creator.username, @event.creator %></strong></p>
           </div>
 
           <div class="block">
@@ -56,7 +54,7 @@
                   Attendees
                 </div>
                 <% @event.attendees.each_with_index do |attendee, index| %>
-                  <%= link_to attendee.name, attendee %>
+                  <%= link_to "@" + attendee.username, attendee %>
                   <% if index == @event.attendees.length - 1 %>
                     .
                   <% else %>
@@ -96,7 +94,7 @@
               <div class="level-left">
                 <div class="level-item">
                   <span class="icon"><i class="fas fa-user-alt"></i></span> 
-                  <%= link_to comment.user.name, comment.user %>
+                  <%= link_to "@" + comment.user.username, comment.user %>
                 </div>
               </div>
               <div class="level-right">

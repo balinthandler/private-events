@@ -35,7 +35,7 @@
       <div class="block">
         <p>
         <span class="icon"><i class="fas fa-laptop-house"></i></span>
-          Hosted by <%= link_to e.creator.name, e.creator %>
+          Hosted by <%= link_to "@" + e.creator.username, e.creator %>
         </p>
         <p>
           <% if e.attendees.count == 0 %>

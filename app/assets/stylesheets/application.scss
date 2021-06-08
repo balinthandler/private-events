@@ -51,10 +51,28 @@
   box-shadow: none;
 }
 
-.title {
-  overflow-wrap: break-word;
-}
+.level {
+  .level-left {
+      min-width: 0;
+      word-break: break-word;
+      flex-basis: 50%;
 
+      .level-item {
+          flex-shrink: 1;
+      }
+  }
+
+  .level-right {
+      min-width: 0;
+      word-break: break-word;
+      flex-basis: 50%;
+
+      .level-item {
+          flex-shrink: 1;
+          text-align: right;
+      }
+  }
+}
 p {
   overflow-wrap: break-word;
 }
