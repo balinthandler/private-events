@@ -27,7 +27,7 @@
             </div>
           <% end %>
           <div class="title is-5">
-            Attended events:
+            Events to attend:
           </div>
           <% Event.all.past.order(:date).each do |event|%>
             <% if event.attendees.include?(@user) %>
